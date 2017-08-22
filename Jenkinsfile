@@ -1,14 +1,4 @@
 #!groovy
-stages {
-  stage('test') {
-    steps {
-      container('dind') {
-        sh 'docker info'
-        sh 'hostname -f'
-      }
-    }
-  }
-}
 pipeline {
   agent {
     kubernetes {
@@ -18,6 +8,16 @@ pipeline {
         image 'billyteves/jenkinslave-dind-kubernetes'
         ttyEnable true
         command 'cat'
+      }
+    }
+  }
+  stages {
+    stage('test') {
+      steps {
+        container('dind') {
+          sh 'docker info'
+          sh 'hostname -f'
+        }
       }
     }
   }
