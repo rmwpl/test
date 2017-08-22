@@ -21,4 +21,8 @@ node ('jenkins-slave') {
     }
   }
 
+  stage('debug sleep') {
+    sh 'sleep 120'
+  }
+
 }
