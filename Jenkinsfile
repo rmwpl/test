@@ -1,22 +1,24 @@
 #!groovy
-node {
-  try {
-    deleteDir()
-    def app
-    stage('checkout') {
-      checkout scm
-    }
-    stage('build') {
-      // comment
-      app = docker.build("debian/stretch")
-    }
-    stage('docker exec') {
-      app.inside {
-        sh 'ls -la'
+pipeline {
+  agent {
+    kubernetes {
+      label 'testpod'
+      containerTemplate {
+        name 'dind'
+        image 'billyteves/jenkinslave-dind-kubernetes'
+        ttyEnable true
+        command 'cat'
       }
     }
-  } catch (e) {
-    throw e
   }
 }
-
+stages {
+  stage('test') {
+    steps {
+      container('dind') {
+        sh 'docker info'
+        sh 'hostname -f'
+      }
+    }
+  }
+}
