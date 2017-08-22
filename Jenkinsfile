@@ -13,7 +13,7 @@ node ('jenkins-slave') {
       stage 'Docker thing1'
       checkout scm
       // sh 'sleep 120'
-      // sh 'docker version'
+      sh 'docker info'
       // app = docker.build("rmwpl/test:latest")
       // stage 'docker exec'
       // app.inside {
