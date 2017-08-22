@@ -1,29 +1,37 @@
 #!groovy
 
-node ('jenkins-slave') {
+podTemplate(label: 'slave', containers: [
+    containerTemplate(name: 'docker', image: 'docker:dind', ttyEnabled: true, alwaysPullImage: true, privileged: true,
+      command: 'dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay')
+  ],
+  volumes: [emptyDirVolume(memory: false, mountPath: '/var/lib/docker')]) {
 
-  stage('Run a non-docker thing') {
-    sh 'echo test'
-    sh 'hostname -f'
-    sh 'sleep 3'
-  }
-
-  stage('Run a docker thing') {
-    container('docker') {
-      stage 'Docker thing1'
-      checkout scm
-      // sh 'sleep 120'
-      sh 'docker info'
-      // app = docker.build("rmwpl/test:latest")
-      // stage 'docker exec'
-      // app.inside {
-      //   sh 'ls -alh'
-      // }
+  node {
+  
+    stage('Run a non-docker thing') {
+      sh 'echo test'
+      sh 'hostname -f'
+      sh 'sleep 3'
     }
-  }
-
-  stage('debug sleep') {
-    sh 'sleep 120'
+  
+    stage('Run a docker thing') {
+      container('docker') {
+        stage 'Docker thing1'
+        checkout scm
+        // sh 'sleep 120'
+        sh 'docker info'
+        // app = docker.build("rmwpl/test:latest")
+        // stage 'docker exec'
+        // app.inside {
+        //   sh 'ls -alh'
+        // }
+      }
+    }
+  
+    stage('debug sleep') {
+      sh 'sleep 120'
+    }
+  
   }
 
 }
