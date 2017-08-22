@@ -7,11 +7,13 @@ podTemplate(label: 'mypod', containers: [
   volumes: [emptyDirVolume(memory: false, mountPath: '/var/lib/docker')]) {
 
     node ('mypod') {
+        stage 'Run a non-docker thing'
+        sh 'hostname -f'
         stage 'Run a docker thing'
         container('docker') {
             stage 'Docker thing1'
             sh 'docker info'
-            app = docker.build("monterail/solarcapture-docker")
+            app = docker.build("rmwpl/test:latest")
             stage 'docker exec'
             app.inside {
               sh 'ls -alh'
