@@ -2,6 +2,7 @@
 pipeline {
   agent {
     kubernetes {
+      label 'dind'
       containerTemplate {
         name 'dind'
         image 'billyteves/jenkinslave-dind-kubernetes'
