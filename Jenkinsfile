@@ -10,7 +10,7 @@ podTemplate(label: 'mypod', containers: [
 
     stage('Run a non-docker thing') {
       sh 'hostname -f'
-      sh 'sleep 30'
+      sh 'sleep 3'
     }
 
     stage('Run a docker thing') {
