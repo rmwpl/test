@@ -10,7 +10,12 @@ podTemplate(label: 'mypod', containers: [
         stage 'Run a docker thing'
         container('docker') {
             stage 'Docker thing1'
-            sh 'docker run debian:stretch sleep 120'
+            sh 'docker info'
+            app = docker.build("monterail/solarcapture-docker")
+            stage 'docker exec'
+            app.inside {
+              sh 'ls -alh'
+            }
         }
 
     }
