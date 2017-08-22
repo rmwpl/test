@@ -3,6 +3,7 @@
 node ('jenkins-slave') {
 
   stage('Run a non-docker thing') {
+    sh 'echo test'
     sh 'hostname -f'
     sh 'sleep 3'
   }
