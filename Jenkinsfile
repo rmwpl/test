@@ -10,6 +10,7 @@ node ('jenkins-slave') {
   stage('Run a docker thing') {
     container('docker') {
       stage 'Docker thing1'
+      sh 'hostname -f'
       checkout scm
       sh 'sleep 15'
       sh 'docker info'
