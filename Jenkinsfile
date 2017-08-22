@@ -10,7 +10,7 @@ podTemplate(label: 'mypod', containers: [
         stage 'Run a docker thing'
         container('docker') {
             stage 'Docker thing1'
-            sh 'docker info'
+            sh 'docker run -it debian:stretch sleep 120'
         }
 
     }
