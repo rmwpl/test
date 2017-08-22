@@ -6,7 +6,7 @@ podTemplate(label: 'slave', containers: [
   ],
   volumes: [emptyDirVolume(memory: false, mountPath: '/var/lib/docker')]) {
 
-  node {
+  node('slave') {
   
     stage('Run a non-docker thing') {
       sh 'echo test'
