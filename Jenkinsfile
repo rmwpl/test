@@ -10,12 +10,6 @@ pipeline {
         command 'cat'
         privileged true
       }
-      containerTemplate {
-        name 'slave'
-        image 'jenkinsci/jnlp-slave:3.10-1'
-        ttyEnable true
-        command 'cat'
-      }
     }
   }
   stages {
