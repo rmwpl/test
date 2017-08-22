@@ -18,9 +18,8 @@ podTemplate(label: 'slave', containers: [
       container('docker') {
         stage 'Docker thing1'
         checkout scm
-        // sh 'sleep 120'
         sh 'docker info'
-        // app = docker.build("rmwpl/test:latest")
+        app = docker.build("rmwpl/test:latest")
         // stage 'docker exec'
         // app.inside {
         //   sh 'ls -alh'
