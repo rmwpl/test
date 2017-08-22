@@ -2,10 +2,16 @@
 pipeline {
   agent {
     kubernetes {
-      label 'dind'
+      label 'pod'
       containerTemplate {
         name 'dind'
-        image 'billyteves/jenkinslave-dind-kubernetes'
+        image 'docker/docker:dind'
+        ttyEnable true
+        command 'cat'
+      }
+      containerTemplate {
+        name 'jnlp'
+        image 'jenkinsci/jnlp-slave:3.10-1'
         ttyEnable true
         command 'cat'
       }
