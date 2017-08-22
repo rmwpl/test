@@ -10,10 +10,9 @@ node ('jenkins-slave') {
   stage('Run a docker thing') {
     container('docker') {
       stage 'Docker thing1'
-      sh 'hostname -f'
       checkout scm
       sh 'sleep 120'
-      sh 'docker info'
+      sh 'docker version'
       app = docker.build("rmwpl/test:latest")
       stage 'docker exec'
       app.inside {
