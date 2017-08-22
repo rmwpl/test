@@ -12,7 +12,7 @@ node ('jenkins-slave') {
       stage 'Docker thing1'
       sh 'hostname -f'
       checkout scm
-      sh 'sleep 15'
+      sh 'sleep 120'
       sh 'docker info'
       app = docker.build("rmwpl/test:latest")
       stage 'docker exec'
