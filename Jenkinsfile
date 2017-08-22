@@ -7,7 +7,7 @@ pipeline {
         name 'dind'
         image 'docker:dind'
         ttyEnable true
-        command 'cat'
+        command 'dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay'
         privileged true
       }
     }
