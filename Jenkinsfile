@@ -5,7 +5,7 @@ pipeline {
       label 'pod'
       containerTemplate {
         name 'dind'
-        image 'docker/docker:dind'
+        image 'docker:dind'
         ttyEnable true
         command 'cat'
         privileged true
