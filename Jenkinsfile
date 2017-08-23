@@ -1,7 +1,7 @@
 #!groovy
 
 podTemplate(label: 'slave', containers: [
-    containerTemplate(name: 'docker', image: 'docker:17.03.1-dind', ttyEnabled: true, alwaysPullImage: true, privileged: true,
+    containerTemplate(name: 'docker', image: 'docker:17.03.1-ce-dind', ttyEnabled: true, alwaysPullImage: true, privileged: true,
       command: 'dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 --storage-driver=overlay')
   ],
   volumes: [emptyDirVolume(memory: false, mountPath: '/var/lib/docker')]) {
