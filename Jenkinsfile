@@ -10,19 +10,17 @@ podTemplate(label: 'slave', containers: [
   
     stage('Run a non-docker thing') {
       sh 'echo test'
-      sh 'hostname -f'
-      sh 'sleep 3'
     }
   
     stage('Run a docker thing') {
       container('docker') {
-        stage 'Docker thing1'
+        stage 'Docker thing test'
         checkout scm
         // sh 'docker info'
         // sh 'docker build -t rmwpl/test:latest .'
         // sh 'docker images'
         app = docker.build("rmwpl/test:latest")
-        stage 'docker exec'
+        stage 'docker exec test'
         app.inside {
           sh 'ls -alh'
         }
