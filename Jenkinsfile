@@ -18,14 +18,17 @@ podTemplate(label: 'slave', containers: [
       container('docker') {
         stage 'Docker thing1'
         checkout scm
-        sh 'docker info'
-        sh 'docker build -t rmwpl/test:latest .'
-        sh 'docker images'
+        // sh 'docker info'
+        // sh 'docker build -t rmwpl/test:latest .'
+        // sh 'docker images'
         // app = docker.build("rmwpl/test:latest")
         // stage 'docker exec'
         // app.inside {
         //   sh 'ls -alh'
         // }
+        docker.build("rmwpl/test:latest").inside {
+          sh 'ls -alh'
+        }
       }
     }
   
