@@ -21,19 +21,12 @@ podTemplate(label: 'slave', containers: [
         // sh 'docker info'
         // sh 'docker build -t rmwpl/test:latest .'
         // sh 'docker images'
-        // app = docker.build("rmwpl/test:latest")
-        // stage 'docker exec'
-        // app.inside {
-        //   sh 'ls -alh'
-        // }
-        docker.build("rmwpl/test:latest").inside {
+        app = docker.build("rmwpl/test:latest")
+        stage 'docker exec'
+        app.inside {
           sh 'ls -alh'
         }
       }
-    }
-  
-    stage('debug sleep') {
-      sh 'sleep 120'
     }
   
   }
