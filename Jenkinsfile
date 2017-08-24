@@ -20,10 +20,10 @@ podTemplate(label: 'slave', containers: [
         checkout scm
         sh 'docker info'
         app = docker.build("rmwpl/test:latest")
-        // stage 'docker exec'
-        // app.inside {
-        //   sh 'ls -alh'
-        // }
+        stage 'docker exec'
+        app.inside {
+          sh 'ls -alh'
+        }
       }
     }
   
