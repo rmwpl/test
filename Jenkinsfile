@@ -9,6 +9,11 @@ podTemplate(label: 'slave', containers: [
   node('slave') {
 
     println "DEBUG: tag is |${params.TAG}|"
+    if (params.TAG) {
+      println "tag provided"
+    } else {
+      println "no tag provided"
+    }
 
     stage('Run a docker thing') {
       container('docker') {
