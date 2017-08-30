@@ -13,7 +13,6 @@ podTemplate(label: 'slave', containers: [
         stage 'Docker thing test'
         checkout scm
         sh 'docker build -t rmwpl/test:latest .'
-        sh 'docker images'
       }
     }
   
