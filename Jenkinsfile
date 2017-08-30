@@ -1,6 +1,8 @@
 #!groovy
 
-parameters { string(name: 'TAG', defaultValue: '__empty__') }
+properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
+  [$class: 'StringParameterDefinition', name: 'TAG', defaultValue: '', description: 'TAG when building from a tag']
+]]])
 
 podTemplate(label: 'slave', containers: [
     containerTemplate(name: 'docker', image: 'docker:dind', ttyEnabled: true, alwaysPullImage: true, privileged: true,
