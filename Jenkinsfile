@@ -8,9 +8,7 @@ podTemplate(label: 'slave', containers: [
 
   node('slave') {
 
-    System.getenv().each {
-      println it
-    }
+    println "DEBUG: tag is |${params.TAG}|"
 
     stage('Run a docker thing') {
       container('docker') {
