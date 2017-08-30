@@ -16,7 +16,7 @@ podTemplate(label: 'slave', containers: [
     if (env.TAG != '<null>') {
       println "tag provided"
         def tag = TAG.reverse().take(TAG.reverse().indexOf('/')).reverse()
-        checkout([$class: 'GitSCM', branches: [[name: "${tag}"]], doGenerateSubmoduleConfigurations: false])
+        checkout([$class: 'GitSCM', branches: [[name: "refs/tags/${tag}"]], doGenerateSubmoduleConfigurations: false])
     } else {
       println "no tag provided"
       checkout scm
