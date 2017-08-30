@@ -21,6 +21,8 @@ podTemplate(label: 'slave', containers: [
       checkout scm
     }
 
+    sh 'git status'
+
     stage('Run a docker thing') {
       container('docker') {
         stage 'Docker thing test'
