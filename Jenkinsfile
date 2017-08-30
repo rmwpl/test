@@ -15,14 +15,15 @@ podTemplate(label: 'slave', containers: [
     println "DEBUG: tag is |${env.TAG}|"
     if (env.TAG != '<null>') {
       println "tag provided"
+        checkout([$class: 'GitSCM', branches: [[name: "*/tags/${env.TAG}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*', url: scm.userRemoteConfigs.url]]])
     } else {
       println "no tag provided"
+      checkout scm
     }
 
     stage('Run a docker thing') {
       container('docker') {
         stage 'Docker thing test'
-        checkout scm
         sh 'docker build -t rmwpl/test:latest .'
       }
     }
