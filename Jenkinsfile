@@ -1,6 +1,6 @@
 #!groovy
 
-parameters { string(name: 'TAG') }
+parameters { string(name: 'TAG', defaultValue: '') }
 
 podTemplate(label: 'slave', containers: [
     containerTemplate(name: 'docker', image: 'docker:dind', ttyEnabled: true, alwaysPullImage: true, privileged: true,
