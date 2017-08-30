@@ -7,6 +7,12 @@ podTemplate(label: 'slave', containers: [
   volumes: [emptyDirVolume(memory: false, mountPath: '/var/lib/docker')]) {
 
   node('slave') {
+
+    println env.TAG
+    println ${TAG}
+
+    sh '''echo ${TAG}'''
+    sh """echo ${TAG}"""
   
     stage('Run a docker thing') {
       container('docker') {
