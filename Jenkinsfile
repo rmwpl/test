@@ -9,7 +9,6 @@ podTemplate(label: 'slave', containers: [
   node('slave') {
 
     println env.TAG
-    println ${TAG}
 
     sh '''echo ${TAG}'''
     sh """echo ${TAG}"""
