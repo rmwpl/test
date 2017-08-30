@@ -8,10 +8,6 @@ podTemplate(label: 'slave', containers: [
 
   node('slave') {
   
-    stage('Run a non-docker thing') {
-      sh 'echo test'
-    }
-  
     stage('Run a docker thing') {
       container('docker') {
         stage 'Docker thing test'
