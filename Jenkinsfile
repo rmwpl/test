@@ -19,6 +19,7 @@ podTemplate(label: 'slave', containers: [
         // checkout([$class: 'GitSCM', branches: [[name: "refs/tags/${tag}"]], doGenerateSubmoduleConfigurations: false])
         checkout scm
         sh """
+          echo test
           git ls-remote
           git checkout ${env.TAG}
           git status
