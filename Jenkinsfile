@@ -8,11 +8,12 @@ podTemplate(label: 'slave', containers: [
 
   node('slave') {
 
-    println env.TAG
+    def parameters = build?.actions.find{ it instanceof ParametersAction }?.parameters
+    parameters.each {
+      println "parameter ${it.name}:"
+      println it.dump()
+    }
 
-    sh '''echo ${TAG}'''
-    sh """echo ${TAG}"""
-  
     stage('Run a docker thing') {
       container('docker') {
         stage 'Docker thing test'
