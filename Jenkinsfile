@@ -1,7 +1,7 @@
 #!groovy
 
 properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
-  [$class: 'StringParameterDefinition', name: 'TAG', defaultValue: '', description: 'TAG when building from a tag']
+  [$class: 'StringParameterDefinition', name: 'TAG', defaultValue: '<null>', description: 'TAG when building from a tag']
 ]]])
 
 podTemplate(label: 'slave', containers: [
