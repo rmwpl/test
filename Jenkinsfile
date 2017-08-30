@@ -15,7 +15,7 @@ podTemplate(label: 'slave', containers: [
     println "DEBUG: tag is |${env.TAG}|"
     if (env.TAG != '<null>') {
       println "tag provided"
-        checkout([$class: 'GitSCM', branches: [[name: "${env.TAG}"]], doGenerateSubmoduleConfigurations: false)
+        checkout([$class: 'GitSCM', branches: [[name: "${env.TAG}"]], doGenerateSubmoduleConfigurations: false])
     } else {
       println "no tag provided"
       checkout scm
