@@ -14,7 +14,7 @@ podTemplate(label: 'slave', containers: [
 
     def dockerTagName = env.TAG_NAME.replaceAll(/[^\p{Alpha}\p{Digit}\\._-]/,'_').replaceAll(/^[-\\.]/,'_')
     println env.TAG_NAME
-    println ${dockerTagName}
+    println "${dockerTagName}"
 
     stage('Run a docker thing') {
       container('docker') {
