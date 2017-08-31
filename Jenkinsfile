@@ -16,6 +16,7 @@ podTemplate(label: 'slave', containers: [
     println env.TAG_NAME
     println "${dockerTagName}"
 
+
     stage('Run a docker thing') {
       container('docker') {
         sh 'echo test8'
