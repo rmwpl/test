@@ -14,7 +14,7 @@ podTemplate(label: 'slave', containers: [
 
     stage('Run a docker thing') {
       container('docker') {
-        sh 'echo test3'
+        sh 'echo test4'
         stage 'Docker thing test'
         sh 'docker build -t rmwpl/test:latest .'
       }
