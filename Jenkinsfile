@@ -12,6 +12,8 @@ podTemplate(label: 'slave', containers: [
 
     sh 'git status'
 
+    println env.TAG_NAME
+
     stage('Run a docker thing') {
       container('docker') {
         sh 'echo test8'
