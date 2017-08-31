@@ -12,7 +12,9 @@ podTemplate(label: 'slave', containers: [
 
     sh 'git status'
 
+    def dockerTagName = env.TAG_NAME.replaceAll(/[^\p{Alpha}\p{Digit}\\._-]/,'_').replaceAll(/^[-\\.]/,'_')
     println env.TAG_NAME
+    println ${dockerTagName}
 
     stage('Run a docker thing') {
       container('docker') {
